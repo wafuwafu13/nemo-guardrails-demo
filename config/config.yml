@@ -1,0 +1,27 @@
+models: []  # この例では会話生成用 LLM は使わない
+
+custom_data:
+  qwen_guard:
+    endpoint: http://127.0.0.1:11434/api/chat
+    model: sileader/qwen3guard:0.6b
+    block_labels:
+      - Unsafe
+
+rails:
+  config:
+    regex_detection:
+      input:
+        patterns:
+          - '(?i)\b(password|secret|api[_-]?key)\b'
+          - '秘密'
+      output:
+        patterns:
+          - '(?i)\b(confidential|internal[_-]?use[_-]?only)\b'
+          - '社外秘'
+  input:
+    flows:
+      - regex check input
+      - qwen guard input
+  output:
+    flows:
+      - regex check output

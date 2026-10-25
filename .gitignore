@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+.hf-cache/
+.hf-rocm-cache/
+*.log
+*.pid
+.agents/
+.aws/
+.codex/

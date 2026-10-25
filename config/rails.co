@@ -1,0 +1,5 @@
+define subflow qwen guard input
+  $result = execute qwen_guard_check_input
+  if $result.is_blocked
+    bot refuse to respond
+    stop
